@@ -1,4 +1,4 @@
-body {
+body:not(#currentDay) {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
@@ -19,6 +19,15 @@ textarea{
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+}
+
+#currentDay {
+  margin-top: 40px;
+  font-size: 40px;
+}
+
+#calendar-container {
+  
 }
 
 .description{
