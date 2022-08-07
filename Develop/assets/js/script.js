@@ -10,7 +10,8 @@ function updateTime() {
     setInterval(function(){
         updateTime();
     },60);
-// create hour elements for schedule:
+    
+let hourEntry;
 var hour8 = $('#8');
 var hour9 = $('#9');
 var hour10= $('#10');
@@ -20,48 +21,76 @@ var hour13 = $('#13');
 var hour14 = $('#14');
 var hour15 = $('#15');
 var hour16 = $('#16');
+
 // get local storage or set to empty:
-const eightA = JSON.parse(localStorage.getItem('hour8'));
+
+function startWork() {
+const eightA = JSON.parse(localStorage.getItem('hour8')) || "";
 hour8.val(eightA); 
-var nineA = JSON.parse(localStorage.getItem('hour9')) || "";
-var tenA = JSON.parse(localStorage.getItem('hour10')) || "";
-var elevenA = JSON.parse(localStorage.getItem('hour11')) || "";
-var twelveP = JSON.parse(localStorage.getItem('hour12')) || "";
-var thirteenP = JSON.parse(localStorage.getItem('hour13')) || "";
-var fourteenP = JSON.parse(localStorage.getItem('hour14')) || "";
-var fifteenP = JSON.parse(localStorage.getItem('hour15')) || "";
-var sixteenP = JSON.parse(localStorage.getItem('hour16')) || "";
+const nineA = JSON.parse(localStorage.getItem('hour9')) || "";
+hour9.val(nineA);
+const tenA = JSON.parse(localStorage.getItem('hour10')) || "";
+hour10.val(tenA);
+const elevenA = JSON.parse(localStorage.getItem('hour11')) || "";
+hour11.val(elevenA);
+const twelveP = JSON.parse(localStorage.getItem('hour12')) || "";
+hour12.val(twelveP);
+const thirteenP = JSON.parse(localStorage.getItem('hour13')) || "";
+hour13.val(thirteenP);
+const fourteenP = JSON.parse(localStorage.getItem('hour14')) || "";
+hour14.val(fourteenP);
+const fifteenP = JSON.parse(localStorage.getItem('hour15')) || "";
+hour15.val(fifteenP);
+const sixteenP = JSON.parse(localStorage.getItem('hour16')) || "";
+hour16.val(sixteenP);
+}
 
 
-
-var textAreaEl = $('<textarea>').attr('id', 'textArea');
 // define current time:
 var currentTime = moment().hour();
 // assign background color based on checking present time + comparing
 function backgroundColor() {
-    $('#textArea').each(function() {
+    $('.description').each(function() {
     var calendarTime = parseInt($(this).attr('id'));
     currentTime = parseInt(currentTime);
    
     if (currentTime < calendarTime) {
-        $(this).addClass('future');
-    } else if (currentTime > calendarTime) {
         $(this).addClass('past');
+        $(this).removeClass('future');
+        $(this).removeClass('present');
+    } else if (currentTime > calendarTime) {
+        $(this).addClass('future');
+        $(this).removeClass('present');
+        $(this).removeClass('past');
     } else {
         $(this).addClass('present');
+        $(this).removeClass('past');
+        $(this).removeClass('future');
     }
 });
 }
-// initiate schedule function:
+// initiate scheduler:
 $(function() {
-backgroundColor()
-$('.saveBtn').on('click', function() {
-    var textEntry = $('.description').val();
-    if (textEntry.length == 0) {
+    startWork()
+    backgroundColor()
+
+    $('.saveBtn').on('click', function() {
+    textEntry = $(this).siblings('.description').val().trim();
+    console.log(textEntry);
+        if (textEntry.length == "") {
     window.alert('Please enter some value');
-}
-})
-})
+    hourEntry = $(this).siblings('.hour').text().trim();
+    console.log(hourEntry);
+    localStorage.setItem(hourEntry, JSON.stringify(textEntry));
+    }})
+
+    $('#friday').on('click', function(){
+    localStorage.clear();
+    startWork();
+    })
+});
+
+
 
 
 
