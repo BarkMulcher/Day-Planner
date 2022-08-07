@@ -2,7 +2,7 @@
 
 // get & update time under header element:
 function updateTime() {
-    // define current time for header:
+// define current time for header:
     var currentTime = moment().format('LL h:mm:ss');
     $("#currentDay").text(currentTime);
     };
@@ -10,7 +10,8 @@ function updateTime() {
     setInterval(function(){
         updateTime();
     },60);
-    
+
+var currentTime = moment().hour();
 let hourEntry;
 var hour8 = $('#8');
 var hour9 = $('#9');
@@ -45,30 +46,6 @@ const sixteenP = JSON.parse(localStorage.getItem('hour16')) || "";
 hour16.val(sixteenP);
 }
 
-
-// define current time:
-var currentTime = moment().hour();
-// assign background color based on checking present time + comparing
-function backgroundColor() {
-    $('.description').each(function() {
-    var calendarTime = parseInt($(this).attr('id'));
-    currentTime = parseInt(currentTime);
-   
-    if (currentTime < calendarTime) {
-        $(this).addClass('past');
-        $(this).removeClass('future');
-        $(this).removeClass('present');
-    } else if (currentTime > calendarTime) {
-        $(this).addClass('future');
-        $(this).removeClass('present');
-        $(this).removeClass('past');
-    } else {
-        $(this).addClass('present');
-        $(this).removeClass('past');
-        $(this).removeClass('future');
-    }
-});
-}
 // initiate scheduler:
 $(function() {
     startWork()
@@ -89,6 +66,30 @@ $(function() {
     startWork();
     })
 });
+
+// assign background color based on checking present time + comparing
+function backgroundColor() {
+    $('.time-block').each(function() {
+        var calendarTime = parseInt($(this).attr('id'));
+        currentTime = parseInt(currentTime);
+   
+        if (currentTime > calendarTime) {
+        $(this).addClass('past');
+        $(this).removeClass('future');
+        $(this).removeClass('present');
+        } else if (currentTime === calendarTime) {
+        $(this).addClass('present');
+        $(this).removeClass('future');
+        $(this).removeClass('past');
+        } else {
+        $(this).addClass('future');
+        $(this).removeClass('past');
+        $(this).removeClass('present');
+        }
+})
+}
+
+
 
 
 
