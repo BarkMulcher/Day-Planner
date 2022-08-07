@@ -7,6 +7,8 @@ body:not(#currentDay) {
 textarea{
   background: transparent;
   border: none;
+  overflow: scroll;
+  height: 80px;
   resize: none;
   color: #000000;
   border-left: 1px solid black;
@@ -15,10 +17,13 @@ textarea{
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
+  background: linear-gradient(to left, #38d630, #6c5ce7);
   color: black;
-  border-radius: 0;
-  border-bottom: 10px solid black;
+  border-bottom: 25px solid rgb(49, 41, 41);
+}
+
+.calendar-container {
+  max-width: 1068px;
 }
 
 #currentDay {
@@ -27,12 +32,13 @@ textarea{
 }
 
 .description{
+  text-align: center;
   white-space: pre-wrap;
+  resize: none;
 }
 
-.time-block{
-  text-align: center;
-  border-radius: 15px;
+.hour-block{
+  border-radius: 20px;
 }
 
 .row {
@@ -42,9 +48,10 @@ textarea{
 }
 
 .hour {
-  background-color: #ffffff;
+  background-color: #d3a7ff;
   color: #000000;
-  border-top: 1px dashed #000000;
+  border-top: 2px dashed #6b48d6;
+  border-left: 2px solid #6b48d6;
 }
 
 .past {
@@ -64,6 +71,7 @@ textarea{
 
 .saveBtn {
   border-left: 1px solid black;
+  font-size: 20px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #47a9c0;
@@ -71,6 +79,11 @@ textarea{
 }
 
 .saveBtn i:hover {
-  font-size: 20px;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
+
+#friday {
+  margin-top: 30px;
+  background-color: #6b48d6;
+}
+

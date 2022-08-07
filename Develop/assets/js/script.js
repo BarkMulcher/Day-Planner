@@ -61,15 +61,17 @@ $(function() {
     localStorage.setItem(hourEntry, JSON.stringify(textEntry));
     }})
 
-    $('#friday').on('click', function(){
-    localStorage.clear();
+    $('#friday').click(function(event) {
+        event.preventDefault;
+        $('textarea').val('');
+        localStorage.clear();
     startWork();
     })
 });
 
 // assign background color based on checking present time + comparing
 function backgroundColor() {
-    $('.time-block').each(function() {
+    $('.hour-block').each(function() {
         var calendarTime = parseInt($(this).attr('id'));
         currentTime = parseInt(currentTime);
    
