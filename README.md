@@ -10,4 +10,4 @@
 
 ### Deployed page screenshot: https://github.com/BarkMulcher/Day-Planner/blob/main/Screenshot%202022-08-07%20125817.png
 
-### Inline screenshot: [Screenshot](https://github.com/BarkMulcher/Day-Planner/blob/main/Screenshot%202022-08-07%20125817.png)
+### Inline screenshot: ![Screenshot](https://github.com/BarkMulcher/Day-Planner/blob/main/Screenshot%202022-08-07%20125817.png)
